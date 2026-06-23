@@ -1,0 +1,159 @@
+/* Silly Little Pomes — marketing site
+   Brand values mirror the app's @/theme (src/theme/colors.ts).
+   Kept deliberately small: two pages, no build step, no third-party requests. */
+
+@font-face {
+  font-family: 'PomesDisplay';
+  src: url('../fonts/PomesDisplay.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --paper: #fbf8f3; /* PAPER */
+  --ink: #1c1a17; /* INK */
+  --orange: #ffb627; /* ORANGE — the wordmark accent */
+  --sky: #5bc8f5; /* SKY */
+  --ink-muted: rgba(28, 26, 23, 0.62);
+  --rule: rgba(28, 26, 23, 0.12);
+  --gutter: 24px;
+  --measure: 34rem; /* comfortable reading width */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
+    sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.display {
+  font-family: 'PomesDisplay', Georgia, serif;
+  font-weight: normal;
+  line-height: 1.05;
+}
+
+a {
+  color: var(--ink);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+a:hover {
+  text-decoration-color: var(--orange);
+}
+
+/* ---- page shell ---- */
+.wrap {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* ---- landing ---- */
+.landing {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 64px var(--gutter);
+}
+
+/* Flex items in a centered column size to content, not the viewport — so without
+   an explicit width long lines overflow instead of wrapping. Cap every block to the
+   viewport (and a comfortable measure), and let it fill that. */
+.landing > * {
+  width: 100%;
+  max-width: var(--measure);
+}
+
+.wordmark {
+  width: 245px; /* matches the app splash imageWidth */
+  max-width: 80vw;
+  height: auto;
+}
+
+.tagline {
+  font-size: 1.35rem;
+  margin: 28px 0 0;
+  color: var(--ink);
+}
+
+.blurb {
+  color: var(--ink-muted);
+  margin: 18px auto 0;
+  max-width: 30rem;
+}
+
+.cta {
+  margin-top: 36px;
+  font-size: 1.05rem;
+  color: var(--ink-muted);
+}
+
+.landing-footer {
+  margin-top: 48px;
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0 0.5em;
+  max-width: 100%;
+}
+.landing-footer a {
+  white-space: nowrap;
+}
+/* Separators collapse out when the row wraps to one item per line. */
+.dot {
+  color: var(--rule);
+}
+
+/* ---- privacy (and any future content page) ---- */
+.doc {
+  padding: 72px 0 96px;
+}
+.doc h1 {
+  font-size: 2.4rem;
+  margin: 0 0 8px;
+}
+.doc .eyebrow {
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+  margin: 0 0 40px;
+}
+.doc p {
+  margin: 0 0 20px;
+}
+.doc .back {
+  display: inline-block;
+  margin-bottom: 40px;
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+.doc .back:hover {
+  color: var(--ink);
+}
+.doc .updated {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+}
