@@ -99,6 +99,79 @@ a:hover {
   color: var(--ink-muted);
 }
 
+/* ---- platform-aware download ---- */
+.download {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+/* Each affordance is hidden; the matching one is revealed by data-platform. */
+.dl {
+  display: none;
+}
+/* Pre-JS / unknown → the App Store badge (opens the web store everywhere). */
+.download[data-platform=''] .dl-ios,
+.download[data-platform='ios'] .dl-ios {
+  display: inline-flex;
+}
+.download[data-platform='desktop'] .dl-desktop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.download[data-platform='android'] .dl-android {
+  display: block;
+}
+
+.badge {
+  width: 168px;
+  height: auto;
+}
+
+/* The QR sits in a soft paper card so it reads as an intentional "scan me",
+   not a bare barcode floating in the column. */
+.qr-frame {
+  display: inline-block;
+  padding: 14px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+}
+.qr {
+  display: block;
+  width: 132px;
+  height: 132px;
+}
+.dl-cap {
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+}
+
+/* Android hero (shown only on Android). */
+.dl-android {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+.dl-android .dl-cap {
+  display: block;
+  margin-top: 6px;
+}
+
+/* "Android coming soon" — shown to everyone EXCEPT Android (which gets the hero
+   above). Keeps the expectation set for all visitors. */
+.soon {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+.download[data-platform='android'] .soon {
+  display: none;
+}
+
 .landing-footer {
   margin-top: 48px;
   font-size: 0.95rem;

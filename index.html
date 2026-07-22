@@ -29,7 +29,40 @@
         a low-pressure practice for poems, prose, pieces and parts.
       </p>
 
-      <p class="cta">coming soon to the App&nbsp;Store.</p>
+      <!-- Platform-aware download. Defaults to the App Store badge (safe no-JS
+           fallback: opens the web store everywhere). The inline script below
+           refines it to a QR on desktop and a "coming soon" note on Android. -->
+      <div class="download" data-platform="">
+        <a class="dl dl-ios" href="https://apps.apple.com/app/id6784480160">
+          <img
+            class="badge"
+            src="assets/img/download-on-app-store.svg"
+            alt="Download on the App Store"
+            width="180"
+            height="60"
+          />
+        </a>
+
+        <div class="dl dl-desktop">
+          <span class="qr-frame">
+            <img
+              class="qr"
+              src="assets/img/appstore-qr.svg"
+              alt="QR code linking to Silly Little Pomes on the App Store"
+              width="132"
+              height="132"
+            />
+          </span>
+          <span class="dl-cap">scan to download on your iPhone</span>
+        </div>
+
+        <p class="dl dl-android">
+          coming to Android soon.
+          <span class="dl-cap">the app is on iPhone today.</span>
+        </p>
+
+        <p class="soon">Android coming soon.</p>
+      </div>
 
       <footer class="landing-footer">
         <a href="privacy/">privacy</a>
@@ -39,5 +72,28 @@
         >
       </footer>
     </main>
+
+    <script>
+      // Route visitors to the right download affordance. Content-free, runs once.
+      (function () {
+        var box = document.querySelector('.download');
+        if (!box) return;
+        var ua = navigator.userAgent || '';
+        var platform = 'desktop';
+        if (/android/i.test(ua)) {
+          platform = 'android';
+        } else if (/iPhone|iPod/i.test(ua)) {
+          platform = 'ios';
+        } else if (
+          /iPad/i.test(ua) ||
+          // iPadOS 13+ masquerades as a Mac; touch points disambiguate it from a
+          // real Mac. iPads run the iOS app, so they get the App Store badge.
+          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+        ) {
+          platform = 'ios';
+        }
+        box.setAttribute('data-platform', platform);
+      })();
+    </script>
   </body>
 </html>
