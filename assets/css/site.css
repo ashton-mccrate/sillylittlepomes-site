@@ -91,6 +91,12 @@ a:hover {
 .wordmark.stacked {
   width: 208px;
 }
+/* Tighten the gap under the stacked wordmark (Little While only — Pomes doesn't
+   use .stacked). The PNG has transparent padding baked in, so this can go small
+   or even negative. Nudge this one number to taste. */
+.wordmark.stacked + .tagline {
+  margin-top: 8px;
+}
 
 .tagline {
   font-size: 1.35rem;
