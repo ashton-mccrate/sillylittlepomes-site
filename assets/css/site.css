@@ -86,6 +86,17 @@ a:hover {
   max-width: 80vw;
   height: auto;
 }
+/* Little While's mark is the two words stacked in a square, so it wants a
+   smaller footprint than the Pomes landscape wordmark. */
+.wordmark.stacked {
+  width: 208px;
+}
+/* Tighten the gap under the stacked wordmark (Little While only — Pomes doesn't
+   use .stacked). The PNG has transparent padding baked in, so this can go small
+   or even negative. Nudge this one number to taste. */
+.wordmark.stacked + .tagline {
+  margin-top: 8px;
+}
 
 .tagline {
   font-size: 1.35rem;
@@ -96,6 +107,14 @@ a:hover {
 .cta {
   margin-top: 36px;
   font-size: 1.05rem;
+  color: var(--ink-muted);
+}
+
+/* Support line — doubles as the App Store "Support URL" contact on the
+   Little While landing. */
+.support {
+  margin-top: 32px;
+  font-size: 0.98rem;
   color: var(--ink-muted);
 }
 
